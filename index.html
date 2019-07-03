@@ -48,17 +48,12 @@
         <script src="js/leaflet-providers.js"></script>
 	<link rel="stylesheet" href="leaflet.zoomhome.css"/>
         <script src="js/leaflet.zoomhome.min.js"></script>
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.ie.css" /><![endif]-->
-	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>
-	<script type="text/javascript" src="../dist/Leaflet.Coordinates-0.1.5.min.js"></script>
-	<link rel="stylesheet" href="../dist/Leaflet.Coordinates-0.1.5.css"/>
         <script>
 				
 var globalMap;
 function createMap(){
 	//create the map
-    const map = L.map('map', {
+    const map = L.map('map', {{zoomControl: false});
             center: [37.8, -96],
             zoom: 5,
             minZoom: 4
@@ -77,6 +72,11 @@ function createMap(){
     controlLayers.addBaseLayer(thunderforest, "Thunderforest Map tiles");
     //call getData function
     getData(map);
+
+}
+
+var zoomHome = L.Control.zoomHome();
+zoomHome.addTo(map);
 
 }
 		
