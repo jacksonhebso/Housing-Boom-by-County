@@ -18,7 +18,7 @@
               bottom: 0;
               left: 15px;
               width: 280px;
-              margin: 85px auto;
+              margin: 75px auto;
               padding: 0 15px;
               background: rgba(256, 256, 256, .8);
               border: 1px solid grey;
@@ -34,6 +34,7 @@
         </style>
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
         <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -46,6 +47,8 @@
             crossorigin=""></script>
 	<script src="http://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
         <script src="js/leaflet-providers.js"></script>
+	<link rel="stylesheet" href="leaflet.zoomhome.css"/>
+        <script src="leaflet.zoomhome.min.js"></script>
         <script>
 
 var globalMap;
@@ -162,6 +165,8 @@ function init(){
   	//create map home button
   	$("header button").on("click", function(){
     	globalMap.flyTo([37.8, -96], 5); //[lat, lng], zoom
+	
+var map = L.map('map', {center: new L.LatLng(37.8,-96), zoom: 5, home: true});
 
     });
 }
