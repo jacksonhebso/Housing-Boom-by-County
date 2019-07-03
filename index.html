@@ -50,18 +50,24 @@
 	<link rel="stylesheet" href="leaflet.zoomhome.css"/>
         <script src="leaflet.zoomhome.min.js"></script>
         <script>
+		
+var TILES_URL = 'https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png?apikey={ecbac3fd50f64532877a7f89024930a9}',
+INITIAL_LOCATION = [37.8, -96],
+INITIAL_ZOOM = 5,
+ATTRIBUTION = '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	apikey: '<ecbac3fd50f64532877a7f89024930a9>';
 
 var globalMap;
 
-function createMap(){
+ $(document).ready(function() {
 	//create the map
-    const map = L.map('map', {
-            center: [37.8, -96],
-            zoom: 5,
-            minZoom: 4
+     var tiles = L.tileLayer(TILES_URL, {attribution: ATTRIBUTION});
+                map = L.map('map', {zoomControl: false}).addLayer(tiles).setView(INITIAL_LOCATION, INITIAL_ZOOM);
+                var zoomHome = L.Control.zoomHome();
+                zoomHome.addTo(map);
     });
     globalMap = map;
-
+	
     //add dark and light OSM base tilelayers
     let controlLayers = L.control.layers().addTo(map);
     var light = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
