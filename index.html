@@ -79,27 +79,7 @@ function createMap(){
     controlLayers.addBaseLayer(thunderforest, "Thunderforest Map tiles");
     //call getData function
     getData(map);
-}
-		
-var bounds = new L.LatLngBounds(new L.LatLng(40, 7), new L.LatLng(55, 10));
-	map.addLayer(service).fitBounds(bounds);
-	//add standard controls
-	L.control.coordinates().addTo(map);
-	//add configured controls
-	L.control.coordinates({
-	position:"bottomleft",
-	decimals:2,
-	decimalSeperator:",",
-	labelTemplateLat:"Latitude: {y}",
-	labelTemplateLng:"Longitude: {x}"
-	}).addTo(map);
-	L.control.coordinates({
-	position:"topright",
-	useDMS:true,
-	labelTemplateLat:"N {y}",
-	labelTemplateLng:"E {x}",
-	useLatLngOrder:true
-	}).addTo(map);
+
 }
 		
 //function to retrieve the data and place it on the map
