@@ -48,6 +48,11 @@
         <script src="js/leaflet-providers.js"></script>
 	<link rel="stylesheet" href="leaflet.zoomhome.css"/>
         <script src="leaflet.zoomhome.min.js"></script>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.ie.css" /><![endif]-->
+	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>
+	<script type="text/javascript" src="../dist/Leaflet.Coordinates-0.1.5.min.js"></script>
+	<link rel="stylesheet" href="../dist/Leaflet.Coordinates-0.1.5.css"/>
         <script>
 				
 var globalMap;
@@ -75,6 +80,28 @@ function createMap(){
     //call getData function
     getData(map);
 }
+		
+var bounds = new L.LatLngBounds(new L.LatLng(40, 7), new L.LatLng(55, 10));
+	map.addLayer(service).fitBounds(bounds);
+	//add standard controls
+	L.control.coordinates().addTo(map);
+	//add configured controls
+	L.control.coordinates({
+	position:"bottomleft",
+	decimals:2,
+	decimalSeperator:",",
+	labelTemplateLat:"Latitude: {y}",
+	labelTemplateLng:"Longitude: {x}"
+	}).addTo(map);
+	L.control.coordinates({
+	position:"topright",
+	useDMS:true,
+	labelTemplateLat:"N {y}",
+	labelTemplateLng:"E {x}",
+	useLatLngOrder:true
+	}).addTo(map);
+}
+		
 //function to retrieve the data and place it on the map
 function getData(map){
     //load the data
